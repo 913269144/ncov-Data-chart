@@ -1,0 +1,20 @@
+export default {
+    path:'/region',
+    name:'region',
+    component:()=>
+    import('@/components/pages/hub/index.vue'),
+    children:[
+        {
+            path:'chinese',
+            name:'chinese',
+            component:()=>
+            import('@/components/pages/china/china.vue'),
+        },
+        {
+            path:'hube',
+            name:'hube',
+            component:()=>
+            import('@/components/pages/hub/hub.vue')
+        }
+    ]
+}
