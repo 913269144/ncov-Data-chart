@@ -1,2 +1,0 @@
-webpackJsonp([2],{KFJM:function(a,e){},KV6l:function(a,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var t={render:function(){var a=this.$createElement;return(this._self._c||a)("div",[this._v("\n    这是测试aaaaaaaaaaaaaaaaaaaaaaaaaaa\n")])},staticRenderFns:[]};var r=n("VU/8")({},t,!1,function(a){n("KFJM")},null,null);e.default=r.exports}});
-//# sourceMappingURL=2.ec25e2eb294b0bb8c306.js.map
