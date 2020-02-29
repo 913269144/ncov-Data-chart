@@ -1,2 +1,0 @@
-webpackJsonp([2],{KV6l:function(a,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var t={render:function(){var a=this.$createElement;return(this._self._c||a)("div",[this._v("\n    这是测试aaaaaaaaaaaaaaaaaaaaaaaaaaa\n")])},staticRenderFns:[]};var r=n("VU/8")({},t,!1,function(a){n("golU")},null,null);e.default=r.exports},golU:function(a,e){}});
-//# sourceMappingURL=2.5fd15e91c4285e5b9701.js.map
