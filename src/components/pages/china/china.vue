@@ -1,15 +1,14 @@
 <template>
   <div class="row">
-    <div class="swiper-container" :style="styles">
+    <!-- <div class="swiper-container" :style="styles">
       <div class="swiper-wrapper">
-        <!-- <div class="swiper-slide col-lg-6 "  style="background-image:url('https://pic3.zhimg.com/v2-27739d9bc34e838444a1ad714505d1f5_1200x500.jpg')"></div> -->
-        <div class="swiper-slide col-lg-3 col-md-4 col-sm-6">
+        <div class="swiper-slide">
           <div>
-            <img src="https://pic3.zhimg.com/v2-27739d9bc34e838444a1ad714505d1f5_1200x500.jpg" alt />
+            <img src="@/assets/img/zhihu33.jpg" alt />
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
