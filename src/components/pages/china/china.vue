@@ -90,8 +90,7 @@ img {
   border-radius: 10px;
 }
 .row {
-  margin-left: 0px;
-
-  margin-right: 0px;
+  padding:0;
+  margin:0;
 }
 </style>
