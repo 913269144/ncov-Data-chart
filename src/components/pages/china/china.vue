@@ -35,7 +35,7 @@ export default {
           
           }else if(newValue<767){
             this.styles={
-              width:'100%'
+              width:this.screenWidth*0.95+'px',
           }
           }
       },
@@ -66,8 +66,12 @@ export default {
       if(this.screenWidth>1199){
          this.styles={
              width:this.screenWidth*0.75+'px',
-              heigh:this.screenWidth*0.4+'px',
+             heigh:this.screenWidth*0.4+'px',
           }
+      }else{
+        this.styles={
+           width:this.screenWidth*0.95+'px',
+        }
       }
     },
     //获取数据
