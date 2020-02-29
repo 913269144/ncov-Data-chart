@@ -3,7 +3,7 @@
     <div class="swiper-container" :style="styles">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div>
+          <div style="margin:0 5px">
             <img src="@/assets/img/zhihu33.jpg" alt />
           </div>
         </div>
