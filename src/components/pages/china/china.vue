@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <!-- <div class="swiper-container" :style="styles">
+    <div class="swiper-container" :style="styles">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div>
@@ -8,7 +8,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 

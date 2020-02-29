@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="echarts-box">
-      <div id="main" style="height:350px;" class="col-lg-4 col-md-6 col-sm-12" ></div>
-       <div id="bar" style="height:350px;" class="col-lg-4 col-md-6 col-sm-12"></div> 
+      <div id="main" style="height:320px;" class="col-lg-4 col-md-6 col-sm-12" ></div>
+       <div id="bar" style="height:320px;" class="col-lg-4 col-md-6 col-sm-12"></div> 
     </div>
   </div>
 </template>
