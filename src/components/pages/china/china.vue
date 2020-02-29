@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div class="swiper-container" :style="styles">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
