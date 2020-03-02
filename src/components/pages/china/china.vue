@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-    <province :show='show' :proData='proData'></province>
+    <province :show='show' :proData='proData' @changes='outIn'></province>
   </div>
 </template>
 
@@ -164,9 +164,11 @@ export default {
       });
     },
     getCity(data) {
-        this.show = !this.show
-        console.log(data)
+        this.outIn()
         this.proData = data.cities
+    },
+    outIn(){
+      this.show = !this.show
     }
   }
 };
