@@ -20,7 +20,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
           <div class="yesterday">
             较昨日
-            <span style="color:#f78207">{{dataList.suspectedIncr}}</span>
+            <span style="color:#f78207">+{{dataList.suspectedIncr}}</span>
           </div>
           <div class="num" style="color:#f78207">{{dataList.suspectedCount}}</div>
           <div>现存疑似</div>
@@ -46,9 +46,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
           <div class="yesterday">
             较昨日
-            <span style="color:#5d7092">
-              +{{dataList.deadIncr}}
-            </span>
+            <span style="color:#5d7092">+{{dataList.deadIncr}}</span>
           </div>
           <div class="num" style="color:#5d7092">{{dataList.deadCount}}</div>
           <div>累计死亡</div>
@@ -64,71 +62,79 @@
       </div>
     </div>
     <div class="Province">
-        <div class="containder-fluid">
-              <div class="row" style="height:30px;line-height:30px">
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding:0;background:#e3e7f3">地区</div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" v-for="item in this.record" :key="item.item" :style="'background-color:'+item.color">
-                         {{item.name}}
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" v-for="item in this.recordTwo" :key="item.item" :style="'background-color:'+item.color">
-                         {{item.name}}
-                    </div>
-              </div>
-              <div class="row area-data" v-for="item in this.areaList" :key="item.provinceName" >
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="font-size:12px;padding:0">
-                  {{item.provinceShortName}}
-                </div>
-                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                   {{item.currentConfirmedCount}}
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                   {{item.confirmedCount}}
-                </div>
-                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                   {{item.curedCount}}
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  {{item.deadCount}}
-                </div>
-              </div>
+      <div class="containder-fluid">
+        <div class="row" style="height:30px;line-height:30px">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding:0;background:#e3e7f3">地区</div>
+          <div
+            class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+            v-for="item in this.record"
+            :key="item.item"
+            :style="'padding:0;background-color:'+item.color"
+          >{{item.name}}</div>
+          <div
+            class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+            v-for="item in this.recordTwo"
+            :key="item.item"
+            :style="'padding:0;background-color:'+item.color"
+          >{{item.name}}</div>
         </div>
+        <div class="row area-data" v-for="(item,index) in areaList" :key="index">
+          <div
+            class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+            style="font-size:12px;padding:0;"
+            @click="getCity(item)">
+            {{item.provinceShortName}}
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.currentConfirmedCount}}</div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.confirmedCount}}</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.curedCount}}</div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.deadCount}}</div>
+        </div>
+      </div>
     </div>
+    <province :show='show' :proData='proData'></province>
   </div>
 </template>
 
 <script>
 import Swiper from "swiper";
+import province from '@/components/pages/china/province'
 import "swiper/css/swiper.min.css";
-import { getStatisticsService,getareaData } from "@/api/data";
+import { getStatisticsService, getareaData } from "@/api/data";
 export default {
   data() {
     return {
       screenWidth: document.body.clientWidth,
       styles: {},
-      record:[
+      record: [
         {
-          name:'现存确诊',
-          color:'#f3bab0',
+          name: "现存确诊",
+          color: "#f3bab0"
         },
         {
-          name:'累计确诊',
-          color:'#e69a8d',
-        },
-      ],
-      recordTwo:[
-        {
-          name:'死亡',
-          color:'#b4c0d5'
-        },
-        {
-          name:'治愈',
-          color:'#95db9a'
+          name: "累计确诊",
+          color: "#e69a8d"
         }
       ],
-      areaList:[],
-      dataList:[]
-
+      recordTwo: [
+        {
+          name: "死亡",
+          color: "#b4c0d5"
+        },
+        {
+          name: "治愈",
+          color: "#95db9a"
+        }
+      ],
+      areaList: [],
+      dataList: [],
+      isleft: true,
+      proData:[],
+      show:false
     };
+  },
+  components:{
+    province
   },
   //监听屏幕宽度
   watch: {
@@ -143,19 +149,24 @@ export default {
   },
   created() {
     this.getdata();
-    this.area()
+    this.area();
   },
   methods: {
     //获取数据
     getdata() {
       getStatisticsService().then(res => {
-         this.dataList = res.data
+        this.dataList = res.data;
       });
     },
-    area(){
-      getareaData().then(res=>{
-        this.areaList = res.data
-      })
+    area() {
+      getareaData().then(res => {
+        this.areaList = res.data;
+      });
+    },
+    getCity(data) {
+        this.show = !this.show
+        console.log(data)
+        this.proData = data.cities
     }
   }
 };
@@ -194,14 +205,21 @@ img {
   margin: -5px auto 10px;
   padding: 0;
 }
-.Province{
-  margin-top:5px;
+.Province {
+  margin-top: 5px;
   font-size: 12px;
 }
-.area-data{
+.area-data {
   height: 30px;
   line-height: 30px;
   background: #f7f7f7;
   margin-bottom: 1px;
+  font-weight: 700;
 }
+  .icon-sp{
+    float:left;
+    line-height:30px;
+    margin-left:5px;
+    color:#ccc
+  }
 </style>
