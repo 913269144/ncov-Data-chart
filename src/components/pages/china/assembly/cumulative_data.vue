@@ -1,56 +1,79 @@
 <template>
   <div>
     <div class="container-fluid num-box">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in" style="border:none">
-          <div class="yesterday">
-            较昨日
-            <span style="color:#f74c31">{{dataList.currentConfirmedIncr}}</span>
+      <div v-if="this.Inplate == 'china'">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in" style="border:none">
+            <div class="yesterday">
+              较昨日
+              <span style="color:#f74c31">{{dataList.currentConfirmedIncr}}</span>
+            </div>
+            <div class="num" style="color:#f74c31">{{dataList.currentConfirmedCount}}</div>
+            <div>现存确诊</div>
           </div>
-          <div class="num" style="color:#f74c31">{{dataList.currentConfirmedCount}}</div>
-          <div>现存确诊</div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
+            <div class="yesterday">
+              较昨日
+              <span style="color:#f78207">+{{dataList.suspectedIncr}}</span>
+            </div>
+            <div class="num" style="color:#f78207">{{dataList.suspectedCount}}</div>
+            <div>现存疑似</div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
+            <div class="yesterday">
+              较昨日
+              <span style="color:rgb(162, 90, 78)">{{dataList.seriousIncr}}</span>
+            </div>
+            <div class="num" style="color:rgb(162, 90, 78)">{{dataList.seriousCount}}</div>
+            <div>现存重症</div>
+          </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
-          <div class="yesterday">
-            较昨日
-            <span style="color:#f78207">+{{dataList.suspectedIncr}}</span>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in" style="border:none">
+            <div class="yesterday">
+              较昨日
+              <span style="color:#ae212c">+{{dataList.confirmedIncr}}</span>
+            </div>
+            <div class="num" style="color:#ae212c">{{dataList.confirmedCount}}</div>
+            <div>累计确诊</div>
           </div>
-          <div class="num" style="color:#f78207">{{dataList.suspectedCount}}</div>
-          <div>现存疑似</div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
-          <div class="yesterday">
-            较昨日
-            <span style="color:rgb(162, 90, 78)">{{dataList.seriousIncr}}</span>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
+            <div class="yesterday">
+              较昨日
+              <span style="color:#5d7092">+{{dataList.deadIncr}}</span>
+            </div>
+            <div class="num" style="color:#5d7092">{{dataList.deadCount}}</div>
+            <div>累计死亡</div>
           </div>
-          <div class="num" style="color:rgb(162, 90, 78)">{{dataList.seriousCount}}</div>
-          <div>现存重症</div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
+            <div class="yesterday">
+              较昨日
+              <span style="color:#28B7a3">+{{dataList.curedIncr}}</span>
+            </div>
+            <div class="num" style="color:#28B7a3">{{dataList.curedCount}}</div>
+            <div>累计治愈</div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in" style="border:none">
-          <div class="yesterday">
-            较昨日
-            <span style="color:#ae212c">+{{dataList.confirmedIncr}}</span>
+      <!-- 海外版 -->
+      <div v-else>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in" style="border:none">
+            <div class="num" style="color:#f74c31">{{dataList.currentConfirmedCount}}</div>
+            <div>现存确诊</div>
           </div>
-          <div class="num" style="color:#ae212c">{{dataList.confirmedCount}}</div>
-          <div>累计确诊</div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
-          <div class="yesterday">
-            较昨日
-            <span style="color:#5d7092">+{{dataList.deadIncr}}</span>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
+            <div class="num" style="color:#f78207">{{dataList.suspectedCount}}</div>
+            <div>累计确诊</div>
           </div>
-          <div class="num" style="color:#5d7092">{{dataList.deadCount}}</div>
-          <div>累计死亡</div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
-          <div class="yesterday">
-            较昨日
-            <span style="color:#28B7a3">+{{dataList.curedIncr}}</span>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
+            <div class="num" style="color:rgb(162, 90, 78)">{{dataList.seriousCount}}</div>
+            <div>累计死亡</div>
           </div>
-          <div class="num" style="color:#28B7a3">{{dataList.curedCount}}</div>
-          <div>累计治愈</div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
+            <div class="num" style="color:rgb(162, 90, 78)">{{dataList.seriousCount}}</div>
+            <div>累计治愈</div>
+          </div>
         </div>
       </div>
     </div>
@@ -91,11 +114,11 @@
 
 <script>
 import province from "@/components/pages/china/province";
-import { getStatisticsService, getareaData } from "@/api/data";
+import { getStatisticsService, getareaData, getOverseas } from "@/api/data";
 export default {
   data() {
     return {
-     styles: {},
+      styles: {},
       record: [
         {
           name: "现存确诊",
@@ -120,28 +143,64 @@ export default {
       dataList: [],
       proData: [],
       isleft: true,
-      show: false,
+      show: false
     };
   },
-  created(){
-      this.getdata()
-      this.area()
+  props: {
+    Inplate: String
   },
-  components:{
-     province 
+  created() {
+    this.getdata(this.Inplate);
+    this.area(this.Inplate);
+  },
+  watch: {
+    Inplate: {
+      handler(newValue, oldValue) {
+        if (newValue) {
+          this.getdata(newValue);
+          this.area(newValue);
+        }
+      },
+      deep: true
+    }
+  },
+  components: {
+    province
   },
   methods: {
-      
-    //获取数据 (中国)
-    getdata() {
-      getStatisticsService().then(res => {
-        this.dataList = res.data;
-      });
+    //获取数据 (类型)
+    getdata(type) {
+      if (type == "china") {
+        getStatisticsService().then(res => {
+          this.dataList = res.data;
+        });
+      } else {
+      }
     },
-    area() {
-      getareaData().then(res => {
-        this.areaList = res.data;
-      });
+    //各地区详情
+    area(type) {
+      if (type == "china") {
+        getareaData().then(res => {
+          this.areaList = res.data;
+        });
+      } else {
+        //海外各国详情
+        getOverseas().then(res => {
+          let arr = 0;
+          let arr2 = 0;
+          let arr3 = 0;
+          let arr4 = 0;
+          for (const key in res.data) {
+            //现存确诊数量
+            arr = arr + Number(res.data[key].currentConfirmedCount);
+            //累计确诊
+            arr2 = arr2 + Number(res.data[key].confirmedCount);
+            arr3 = arr3 + Number(res.data[key].deadCount);
+            arr4 = arr4 + Number(res.data[key].curedCount);
+          }
+          console.log(arr4);
+        });
+      }
     },
     //查看各个省份详情
     getCity(data) {
@@ -164,12 +223,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  width: 100%;
-  display: inline-block;
-  border-radius: 10px;
-  margin: 0 auto;
-}
 .container-fluid {
   padding: 0;
   margin: 0;
@@ -177,25 +230,6 @@ img {
 .row {
   padding: 0;
   margin: 0;
-}
-.plate {
-  div {
-    height: 50px;
-    line-height: 50px;
-    border-radius: 10px 10px 0 0;
-    border: 1px solid #eee;
-    border-bottom: none;
-    font-size: 22px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  .in-china {
-    border-radius: 10px 0px 0 0;
-  }
-  .in-word {
-    border-radius: 0px 10px 0 0;
-    border-left: none;
-  }
 }
 .num-box {
   box-shadow: 1px 2px 1px 1px rgba(212, 212, 241, 0.2);

@@ -18,7 +18,14 @@ export function getareaData(object){
         params:object
     })
 }
-
+//海外地区数据
+export function getOverseas(object){
+    return request({
+        url:HOST+'data/getListByCountryTypeService2',
+        methods:'get',
+        params:object
+    })
+}
 //湖北地区数据
 export function getAreaStat (object,type){
     return request({
