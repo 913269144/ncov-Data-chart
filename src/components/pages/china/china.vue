@@ -1,28 +1,23 @@
 <template>
   <div style="margin:0 10px">
-    <div class="containder-fluid">
-      <div class="row">
-        <div class="nav-t col-lg-12">
-          <img src="@/assets/img/feiyandongt.jpg" alt />
+    <!-- 中国 or 世界 -->
+    <div>
+      <div class="container-fluid">
+        <div class="row plate">
+          <div
+            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-china"
+            :style="'background-color:'+china_active"
+            @click="routerin('china')"
+          >国内疫情数据</div>
+          <div
+            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-word"
+            :style="'background-color:'+word_active"
+            @click="routerin('word')"
+          >海外疫情数据</div>
         </div>
       </div>
+      <assetsData ref="Plate_data" :Inplate="Inplate"></assetsData>
     </div>
-    <!-- 中国 or 世界 -->
-    <div class="container-fluid">
-      <div class="row plate">
-        <div
-          class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-china"
-          :style="'background-color:'+china_active"
-          @click="routerin('china')"
-        >国内疫情数据</div>
-        <div
-          class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-word"
-          :style="'background-color:'+word_active"
-          @click="routerin('word')"
-        >海外疫情数据</div>
-      </div>
-    </div>
-    <assetsData ref="Plate_data" :Inplate='Inplate'></assetsData>
   </div>
 </template>
 
@@ -57,8 +52,7 @@ export default {
     routerin(region) {
       this.Inplate = region;
       if (region == "china") {
-        this.word_active = "#b3c8ff", 
-        this.china_active = "#fff";
+        (this.word_active = "#b3c8ff"), (this.china_active = "#fff");
       } else {
         this.china_active = "#b3c8ff";
         this.word_active = "#fff";
@@ -69,19 +63,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
 img {
   width: 100%;
   display: inline-block;
-  border-radius: 10px;
   margin: 0 auto;
 }
 .nav-t {
   padding: 0;
   margin-bottom: 5px;
-}
-.container-fluid {
-  padding: 0;
-  margin: 0;
 }
 .row {
   padding: 0;

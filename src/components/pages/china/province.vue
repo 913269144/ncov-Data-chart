@@ -1,9 +1,9 @@
 <template>
-  <div class="dialog-box" v-if="show">
+  <div class="dialog-box" v-if="show" @click="outIn()">
     <div class="dialog-cover">
       <div class="dialog-content">
         <div></div>
-        <div class="containder-fluid">
+        <div class="containder-fluid" @click.stop="setIn()">
           <div class="row title" style="border-bottom: 3px solid rgb(166, 148, 207);margin:0px">
             <div
               class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cate-title"
@@ -38,31 +38,6 @@
             >暂无更多数据....</div>
           </div>
         </div>
-        <svg
-          t="1583208032271"
-          @click="outIn"
-          class="icon font"
-          viewBox="0 0 1024 1024"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          p-id="1187"
-          width="48"
-          height="48"><path
-            d="M512 1023.998046A511.999023 511.999023 0 0 1 312.610948 41.080156a511.999023 511.999023 0 0 1 398.778104 942.839689 508.993158 508.993158 0 0 1-199.389052 40.078201z m0-943.841643C273.534702 80.156403 80.15738 274.53568 80.15738 511.999023s193.377322 431.84262 431.84262 431.84262 431.84262-193.377322 431.84262-431.84262S749.463343 80.156403 512 80.156403z"
-            fill="#dbdbdb"
-            p-id="1188"
-          />
-          <path
-            d="M320.626588 743.450636a40.078201 40.078201 0 0 1-28.054741-68.132942l381.744869-381.744869a40.383798 40.383798 0 0 1 57.111437 57.111437L349.683284 731.427176a40.078201 40.078201 0 0 1-29.056696 12.02346z"
-            fill="#dbdbdb"
-            p-id="1189"
-          />
-          <path
-            d="M702.371457 743.450636a40.078201 40.078201 0 0 1-28.054741-12.02346L292.571847 349.682307a40.383798 40.383798 0 0 1 57.111437-57.111437l380.742914 382.746824a40.078201 40.078201 0 0 1-28.054741 68.132942z"
-            fill="#dbdbdb"
-            p-id="1190"
-          />
-        </svg>
       </div>
     </div>
   </div>
@@ -123,7 +98,11 @@ export default {
       };
       document.body.style.overflow = ""; //出现滚动条
       document.removeEventListener("touchmove", mo, false);
-    }
+    },
+    //防止冒泡占位
+    setIn(){
+
+    },
   }
 };
 </script>
@@ -158,6 +137,8 @@ export default {
   }
   .containder-fluid {
     position: relative;
+     border-radius: 15px;
+     overflow: hidden;
     width: 100%;
     font-size: 16px;
     color: #000;
@@ -167,7 +148,7 @@ export default {
       margin: 0px;
     }
     .nav-box {
-      height: 520px;
+      height: 420px;
       overflow: scroll;
       .nav {
         border-bottom: 0.5px solid #ccc;
@@ -199,7 +180,5 @@ export default {
 .font {
   margin-top: 15px;
 }
-::-webkit-scrollbar {
-  display: none;
-}
+
 </style>
