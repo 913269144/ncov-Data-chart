@@ -1,5 +1,5 @@
 import request from '@/request.js'
-let HOST = 'http://49.232.173.220:3001/'
+let HOST = 'http://193.112.137.60:3001/'
 
 //全国疫情总览图
 export function getStatisticsService(object){
