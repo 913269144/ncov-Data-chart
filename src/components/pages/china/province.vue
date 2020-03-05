@@ -115,7 +115,7 @@ export default {
   .dialog-cover {
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
-    z-index: 200;
+    z-index: 9999;
     top: 0;
     left: 0;
     width: 100%;
