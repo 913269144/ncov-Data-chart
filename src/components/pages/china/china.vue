@@ -1,7 +1,7 @@
 <template>
   <div style="margin:0 10px; overflow-y: hidden">
     <!--  播报新闻 -->
-    <scroll ></scroll>
+    <scroll class="scroll"></scroll>
     <!-- 中国 or 世界 -->
     <div>
       <div class="container-fluid">
@@ -88,6 +88,7 @@ img {
   div {
     height: 50px;
     line-height: 50px;
+    background-color: #fff;
     border-radius: 10px 10px 0 0;
     border: 1px solid #eee;
     border-bottom: none;
@@ -103,5 +104,10 @@ img {
     border-radius: 0px 10px 0 0;
     border-left: none;
   }
+}
+.scroll{
+    border-radius: .04rem;
+    box-shadow: 0 0.02rem 0.06rem 0 rgba(0,0,0,.05);
+    border: .005rem solid #ebebeb
 }
 </style>

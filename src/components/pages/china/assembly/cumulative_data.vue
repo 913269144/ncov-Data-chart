@@ -253,8 +253,6 @@ export default {
   created() {
     this.getdata(this.Inplate);
     this.area(this.Inplate);
-  },
-  mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
   watch: {
@@ -277,11 +275,7 @@ export default {
          }else{
              this.$refs.region.style.position = "",
              this.$refs.region.style.top = "";
-              this.$refs.region.style.width = "100%";
-        }
-        
-        if(newValue){
-            console.log(newValue)
+             this.$refs.region.style.width = "100%";
         }
       },
       deep: true
@@ -415,7 +409,6 @@ export default {
     outIn() {
       this.show = !this.show;
     },
-
     //打开/关闭地区详情
     showHide(index, num) {
       let NewNum = 0;
@@ -443,13 +436,13 @@ export default {
         }
       }
     },
-
-
-
     //获取滑屏距离
     handleScroll() {
       this.content_scroll = this.$refs.content_nav.getBoundingClientRect().top
     }
+  },
+  destroyed() {
+    window.removeEventListener("scroll",  this.handleScroll);
   }
 };
 </script>
@@ -472,6 +465,7 @@ export default {
   border-radius: 0 0 10px 10px;
   border: 1px solid #eee;
   padding: 10px;
+  background-color: #fff;
 
   .yesterday {
     font-size: 11.5px;
