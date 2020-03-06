@@ -270,7 +270,7 @@ export default {
          if (newValue <= 49) {
              this.$refs.region.style.position = "fixed",
              this.$refs.region.style.top = "50px";
-             this.$refs.region.style.width = "95%";
+               this.$refs.region.style.width = "95%";
              
          }else{
              this.$refs.region.style.position = "",
@@ -462,7 +462,6 @@ export default {
 }
 .num-box {
   box-shadow: 1px 2px 1px 1px rgba(212, 212, 241, 0.2);
-  border-radius: 0 0 10px 10px;
   border: 1px solid #eee;
   padding: 10px;
   background-color: #fff;
@@ -492,7 +491,7 @@ export default {
   padding: 0;
 }
 .Province {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 12px;
 }
 .area-data {

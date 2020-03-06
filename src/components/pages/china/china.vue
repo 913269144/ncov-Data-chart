@@ -1,5 +1,5 @@
 <template>
-  <div style="margin:0 10px; overflow-y: hidden">
+  <div style="margin:0 10px;overflow-y: hidden">
     <!--  播报新闻 -->
     <scroll class="scroll"></scroll>
     <!-- 中国 or 世界 -->
@@ -105,9 +105,5 @@ img {
     border-left: none;
   }
 }
-.scroll{
-    border-radius: .04rem;
-    box-shadow: 0 0.02rem 0.06rem 0 rgba(0,0,0,.05);
-    border: .005rem solid #ebebeb
-}
+
 </style>
