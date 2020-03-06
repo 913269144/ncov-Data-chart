@@ -1,5 +1,7 @@
 <template>
-  <div style="margin:0 10px">
+  <div style="margin:0 10px; overflow-y: hidden">
+    <!--  播报新闻 -->
+    <scroll ></scroll>
     <!-- 中国 or 世界 -->
     <div>
       <div class="container-fluid">
@@ -23,17 +25,19 @@
 
 <script>
 import assetsData from "@/components/pages/china/assembly/cumulative_data";
+import scroll from '@/components/pages/china/assembly/scroll_slide'
 import { getStatisticsService, getareaData } from "@/api/data";
 export default {
   data() {
     return {
       china_active: "",
       word_active: "#b3c8ff",
-      Inplate: "china"
+      Inplate: "china",
     };
   },
   components: {
-    assetsData
+    assetsData,
+    scroll
   },
   //监听屏幕宽度
   watch: {

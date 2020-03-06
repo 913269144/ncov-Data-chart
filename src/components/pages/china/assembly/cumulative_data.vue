@@ -80,7 +80,7 @@
     <!-- 各省份/地区 -->
     <div class="Province">
       <div class="containder-fluid">
-        <div class="row" style="height:30px;line-height:30px">
+        <div class="region-title" style="height:30px;line-height:30px" ref="region">
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding:0;background:#e3e7f3">地区</div>
           <div
             class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
@@ -95,47 +95,50 @@
             :style="'padding:0;background-color:'+item.color"
           >{{item.name}}</div>
         </div>
-        <!-- 中国 -->
-        <div v-if="this.Inplate == 'china'">
-          <div class="row area-data" v-for="(item,index) in areaList" :key="index">
-            <div
-              class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
-              style="font-size:12px;padding:0;"
-              @click="getCity(item)"
-            >{{item.provinceShortName}}</div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.currentConfirmedCount}}</div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.confirmedCount}}</div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.deadCount}}</div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.curedCount}}</div>
-          </div>
-        </div>
-        <div v-else>
-          <div v-for="(item, index) of courseSubList" :key="item.name">
-            <div class="row area-data" @click="showHide(index,item.index)">
+        <div class="content-nav" ref="content_nav">
+         <!-- 中国 -->
+          <div v-if="this.Inplate == 'china'">
+            <div class="row area-data" v-for="(item,index) in areaList" :key="index">
               <div
                 class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
                 style="font-size:12px;padding:0;"
-              >{{item.name}}</div>
+                @click="getCity(item)"
+              >{{item.provinceShortName}}</div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.currentConfirmedCount}}</div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.confirmedCount}}</div>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.curedCount}}</div>
               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.deadCount}}</div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.curedCount}}</div>
             </div>
-            <div>
-              <div
-                class="row area-data"
-                v-for="i in item.city"
-                style="display:none"
-                :key="i.id"
-                ref="child"
-              >
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.provinceName}}</div>
+          </div>
+         <!-- 海外 -->
+          <div v-else>
+            <div v-for="(item, index) of courseSubList" :key="item.name">
+              <div class="row area-data" @click="showHide(index,item.index)">
                 <div
-                  class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name"
-                >{{i.currentConfirmedCount}}</div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name">{{i.confirmedCount}}</div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.curedCount}}</div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.deadCount}}</div>
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+                  style="font-size:12px;padding:0;"
+                >{{item.name}}</div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.currentConfirmedCount}}</div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{item.confirmedCount}}</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.deadCount}}</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{item.curedCount}}</div>
+              </div>
+              <div>
+                <div
+                  class="row area-data"
+                  v-for="i in item.city"
+                  style="display:none"
+                  :key="i.id"
+                  ref="child"
+                >
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.provinceName}}</div>
+                  <div
+                    class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name"
+                  >{{i.currentConfirmedCount}}</div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name">{{i.confirmedCount}}</div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.curedCount}}</div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.deadCount}}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -239,6 +242,7 @@ export default {
       areaList: [],
       dataList: [],
       proData: [],
+      content_scroll:'',
       isleft: true,
       show: false
     };
@@ -250,12 +254,34 @@ export default {
     this.getdata(this.Inplate);
     this.area(this.Inplate);
   },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
   watch: {
     Inplate: {
       handler(newValue, oldValue) {
         if (newValue) {
           this.getdata(newValue);
           this.area(newValue);
+        }
+      },
+      deep: true
+    },
+    content_scroll: {
+      handler(newValue, oldValue) {
+         if (newValue <= 49) {
+             this.$refs.region.style.position = "fixed",
+             this.$refs.region.style.top = "50px";
+             this.$refs.region.style.width = "95%";
+             
+         }else{
+             this.$refs.region.style.position = "",
+             this.$refs.region.style.top = "";
+              this.$refs.region.style.width = "100%";
+        }
+        
+        if(newValue){
+            console.log(newValue)
         }
       },
       deep: true
@@ -344,8 +370,8 @@ export default {
           for (const key in res.data) {
             arr = arr + Number(res.data[key].currentConfirmedCount);
             arr2 = arr2 + Number(res.data[key].confirmedCount);
-            arr3 = arr3 + Number(res.data[key].deadCount);
-            arr4 = arr4 + Number(res.data[key].curedCount);
+            arr3 = arr3 + Number(res.data[key].curedCount);
+            arr4 = arr4 + Number(res.data[key].deadCount);
             for (const index in this.courseSubList) {
               if (this.courseSubList[index].name == res.data[key].continents) {
                 this.courseSubList[index].index =
@@ -383,13 +409,14 @@ export default {
       ) {
         this.outIn();
         this.proData = data.cities;
-        console.log(data.provinceName);
       }
     },
     //关闭弹窗
     outIn() {
       this.show = !this.show;
     },
+
+    //打开/关闭地区详情
     showHide(index, num) {
       let NewNum = 0;
       let indexIn = 0;
@@ -415,6 +442,13 @@ export default {
           this.$refs.child[i].style.display = "none";
         }
       }
+    },
+
+
+
+    //获取滑屏距离
+    handleScroll() {
+      this.content_scroll = this.$refs.content_nav.getBoundingClientRect().top
     }
   }
 };
@@ -429,6 +463,10 @@ export default {
   padding: 0;
   margin: 0;
 }
+.region-title {
+  width: 100%;
+  z-index: 9999;
+}
 .num-box {
   box-shadow: 1px 2px 1px 1px rgba(212, 212, 241, 0.2);
   border-radius: 0 0 10px 10px;
@@ -438,6 +476,9 @@ export default {
   .yesterday {
     font-size: 11.5px;
     color: #666;
+    span {
+      font-weight: 500;
+    }
   }
   .num {
     font-size: 1.65rem;
@@ -448,6 +489,7 @@ export default {
     border-left: 1px solid #eee;
     padding: 0;
     font-size: 1.35rem;
+    font-weight: 800;
     color: #333;
   }
 }

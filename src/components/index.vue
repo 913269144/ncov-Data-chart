@@ -9,13 +9,7 @@
     </div>
     <div class="containder-fluid">
       <div class="row plate-nav" ref="title">
-        <div
-          class="col-xs-3 col-sm-3 col-md-3 col-lg-3"
-          v-for="(item,index) of this.menu"
-          :key="item.name"
-          @click="routerIn(index,item.routerName)"
-        >
-          {{item.name}}
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" v-for="(item,index) of this.menu" :key="item.name" @click="routerIn(index,item.routerName)"> {{item.name}}
           <i class="active" ref="bottom" style="display:none"></i>
         </div>
       </div>
@@ -49,6 +43,7 @@ export default {
         }
       ],
       index : '',
+      text:'',
       routerName: this.$route.name,
     };
   },
@@ -87,6 +82,7 @@ export default {
         this.$refs.bottom[i].style.display = "none";
       }
       this.$refs.bottom[index].style.display = "block";
+      this.$refs.bottom[index].style.backgroundColor ='rgb(65, 105, 226)'
       this.$router.push({
         name: name
       });
@@ -105,6 +101,7 @@ export default {
         this.$refs.bottom[i].style.display = "none";
         if (this.$route.name == this.menu[i].routerName) {
           this.$refs.bottom[i].style.display = "block";
+          this.$refs.bottom[i].style.backgroundColor = 'rgb(65, 105, 226)'
           this.index = i
         }
       }
