@@ -2,17 +2,32 @@
   <div class="dialog-box" v-if="show" @click="outIn()">
     <div class="dialog-cover">
       <div class="dialog-content">
-        <div></div>
-        <div class="containder-fluid" @click.stop="setIn()">
-          <div class="row title" style="border-bottom: 3px solid rgb(166, 148, 207);margin:0px">
+        <div  class="containder-fluid" @click.stop="setIn()">
+           <div v-if="types =='Explain'" class="data-box">
+             <div style="text-align:left">
+                  <p>项目声明</p>
+                  <span>1.数据来源</span><br>
+                  <span>该项目数据来源自丁香园 <a href="https://ncov.dxy.cn/ncovh5/view/pneumonia">(点击访问)</a> </span>
+                  <br>
+                  <br>
+                  <span>2.项目说明</span><br>
+                  <span>该项目仅供学习用途 非商业使用<br> (如有侵权 联系作者 邮箱:<b>w913269144@163.com</b>)  </span>
+                  <br>
+                  <br>
+                  <span>3.更多</span><br>
+                  <span>欢迎访问我的博客  <a href="http://www.junin.club">点击访问</a> </span>
+             </div>
+          </div>
+          <div v-else>
+             <div class="row title" style="border-bottom: 3px solid rgb(166, 148, 207);margin:0px" >
             <div
               class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cate-title"
               v-for="item in category"
               :key="item"
             >{{item}}</div>
-          </div>
-          <!-- 城市 -->
-          <div class="nav-box">
+             </div>
+             <!-- 城市 -->
+             <div class="nav-box" >
             <div
               class="row nav"
               v-for="item in this.proData"
@@ -36,6 +51,7 @@
             <div
               style="height:50px;line-height:50px;font-size:12px;font-weight:700;color:#c6c6c6"
             >暂无更多数据....</div>
+             </div>
           </div>
         </div>
       </div>
@@ -48,12 +64,15 @@ require("echarts/map/js/province/hubei");
 export default {
   props: {
     show: Boolean,
-    proData: Array
+    proData: Array,
+    types:String
   },
   watch: {
     show: {
       handler(newValue, oldValue) {
         if (this.show == true) {
+          console.log(this.types)
+
           this.getNewData();
           this.stop();
         } else {
@@ -125,7 +144,7 @@ export default {
     position: fixed;
     font-size: 20px;
     color: #000;
-    top: 10%;
+    top: 6%;
     // 移动端使用felx布局
     display: flex;
     flex-direction: column;
@@ -133,13 +152,15 @@ export default {
     align-items: center;
     z-index: 999;
     width: 100%;
-    padding: 20px;
+    padding: 5%;
   }
   .containder-fluid {
     position: relative;
-     border-radius: 15px;
-     overflow: hidden;
     width: 100%;
+    margin-right: 50px;
+    margin-left: 50px;
+    border-radius: 10px;
+    overflow: hidden;
     font-size: 16px;
     color: #000;
     background-color: #fff;
@@ -180,5 +201,21 @@ export default {
 .font {
   margin-top: 15px;
 }
-
+.data-box{
+  padding:10px;
+  overflow: hidden;
+  p{
+    margin-bottom: .08rem;
+    color: #4169e2;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom:.6rem;
+  }
+  span{
+      font-size: 1.2rem;
+      a{
+        margin-right: 1px;
+      }
+  }
+}
 </style>

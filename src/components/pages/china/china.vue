@@ -8,12 +8,12 @@
         <div class="row plate">
           <div
             class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-china"
-            :style="'background-color:'+china_active"
+            :style="'color:'+color_china+';'+'background-color:'+china_active"
             @click="routerin('china')"
           >国内疫情数据</div>
           <div
             class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-word"
-            :style="'background-color:'+word_active"
+            :style="'color:'+color_word+';'+'background-color:'+word_active"
             @click="routerin('word')"
           >海外疫情数据</div>
         </div>
@@ -33,6 +33,8 @@ export default {
       china_active: "",
       word_active: "#b3c8ff",
       Inplate: "china",
+      color_word:'#333',
+      color_china:'rgb(65, 105, 226)'
     };
   },
   components: {
@@ -56,10 +58,14 @@ export default {
     routerin(region) {
       this.Inplate = region;
       if (region == "china") {
-        (this.word_active = "#b3c8ff"), (this.china_active = "#fff");
+        this.word_active = "#b3c8ff", this.china_active = "#fff";
+        this.color_china = 'rgb(65, 105, 226)'
+        this.color_word = '#333'
       } else {
         this.china_active = "#b3c8ff";
         this.word_active = "#fff";
+         this.color_word = 'rgb(65, 105, 226)'
+         this.color_china = '#333'
       }
     }
   }

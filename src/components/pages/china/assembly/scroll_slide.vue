@@ -1,11 +1,10 @@
 <template>
-  <div style="width:100%;margin:10px auto;height:40px;">
+  <div class="box">
     <slider ref="slider" :options="options" class="scroll-box">
-      <slideritem v-for="(item,index) in someList" :key="index" :style="item.style">
+      <slideritem v-for="(item,index) in someList" :key="index" :style="item.style" class="title-content">
         <span class="rise">{{item.marqueeLabel}}</span>
-        <span @click="See(item.marqueeLink)" style="color:'#333'">{{item.html}}</span>
-        <svg style=" margin-left:20px;" t="1583496107721" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2279" width="16" height="16"><path d="M342.272 936a33.28 33.28 0 0 1-23.616-56.96l377.664-377.664a33.28 33.28 0 1 1 47.168 47.232l-377.664 377.6a32.96 32.96 0 0 1-23.552 9.792" fill="#cdcdcd" p-id="2280"></path><path d="M720 558.336a33.024 33.024 0 0 1-23.616-9.792L309.76 161.984a33.344 33.344 0 1 1 47.232-47.232l386.56 386.56a33.28 33.28 0 0 1-23.552 57.024" fill="#cdcdcd" p-id="2281"></path></svg>
-        </slideritem>
+        <span @click="See(item.marqueeLink)" style="color:'#333';margin-top:1px;font-size:13.25px">{{item.html}}</span>
+       </slideritem>
       <div slot="loading">loading...</div>
     </slider>
   </div>
@@ -66,6 +65,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.box{
+  width:100%;
+  margin:10px auto;
+  height:40px;
+  border:1px solid #f7f7f7;
+}
 .scroll-box{
       border-radius: 7px;
       box-shadow: 1px 1px 2px 0 rgba(0,0,0,.05);
@@ -80,5 +85,8 @@ export default {
     vertical-align: middle;
     margin-right: 3px;
 
+}
+.title-content{
+  position: relative;
 }
 </style>
