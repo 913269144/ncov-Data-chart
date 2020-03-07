@@ -96,7 +96,7 @@ img {
     line-height: 50px;
     background-color: #fff;
     border-radius: 10px 10px 0 0;
-    border: 1px solid #eee;
+    border: 0.5px solid #f7f7f7;
     border-bottom: none;
     font-size: 18px;
     font-family: "微软雅黑";

@@ -477,7 +477,7 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  padding-left: 10px;
+  padding-left: 5px;
   font-size: 1.2rem;
   color: #666;
   text-align: left;
@@ -486,6 +486,7 @@ export default {
     float: right;
     margin: 10px 0;
     line-height: 30px;
+    padding:0 5px;
     border-radius: 10px 0 0px 10px;
     background-color: #f7f7f7;
     svg{
