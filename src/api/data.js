@@ -34,3 +34,12 @@ export function getAreaStat (object,type){
         params:object
     })
 }
+
+//最新辟谣
+export function getIndexRumorList(object){
+    return request({
+        url:HOST+'data/getIndexRumorList',
+        methods:'get',
+        params:object
+    })
+}

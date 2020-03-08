@@ -70,10 +70,8 @@ export default {
   margin:10px auto;
   height:40px;
   border:1px solid #f7f7f7;
-}
-.scroll-box{
-      border-radius: 7px;
-      box-shadow: 1px 1px 2px 0 rgba(0,0,0,.05);
+  border-radius: 7px;
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,.05);
 }
 .rise{
     flex: none;

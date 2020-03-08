@@ -212,7 +212,7 @@ export default {
     margin-bottom:.6rem;
   }
   span{
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       a{
         margin-right: 1px;
       }

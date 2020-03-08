@@ -85,7 +85,7 @@
       </div>
     </div>
     <!-- 各省份/地区 -->
-    <div class="Province">
+    <div class="Province" style="margin-bottom:60px">
       <div class="containder-fluid">
         <div class="region-title" style="height:30px;line-height:30px" ref="region">
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding:0;background:#e3e7f3">地区</div>

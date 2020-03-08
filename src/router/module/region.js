@@ -11,12 +11,6 @@ export default {
             import('@/components/pages/china/china.vue'),
         },
         {
-            path:'hube',
-            name:'hube',
-            component:()=>
-            import('@/components/pages/hub/hub.vue')
-        },
-        {
             path:'rumor',
             name:'rumor',
             component:()=>
