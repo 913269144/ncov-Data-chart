@@ -2,7 +2,7 @@
   <div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"  v-for="(item,index) in this.list" :key="index">
+        <div class="swiper-slide" v-for="(item,index) in this.list" :key="index">
           <!-- 标题 -->
           <div class="title-box">
             <img src alt />
@@ -43,22 +43,23 @@ export default {
       list: []
     };
   },
-  mounted() {
+  created() {
     this.getlist();
+  },
+  mounted() {
+    var mySwiper = new Swiper(".swiper-container", {
+      effect: "coverflow",
+      slidesPerView: 1.3,
+      centeredSlides: true,
+      loop: true,
+      observer: true, //修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true //修改swiper的父元素时，自动初始化swiper
+    });
   },
   methods: {
     getlist() {
       getIndexRumorList().then(res => {
-        console.log(res);
         this.list = res.data;
-        var mySwiper = new Swiper(".swiper-container", {
-          effect: "coverflow",
-          slidesPerView: 1.3,
-          centeredSlides: true,
-          loop: true,
-          observer:true,//修改swiper自己或子元素时，自动初始化swiper
-    observeParents:true,//修改swiper的父元素时，自动初始化swiper
-        });
       });
     }
   }
