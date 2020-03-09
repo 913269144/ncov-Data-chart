@@ -5,6 +5,7 @@
     <!-- 中国 or 世界 -->
     <div>
       <div class="container-fluid">
+        <!-- 汇总数据 -->
         <div class="row plate">
           <div
             class="col-xs-6 col-sm-6 col-md-6 col-lg-6 in-china"
