@@ -222,8 +222,8 @@ export default {
     },
     Inplate: function(newValue, oldValue) {
       if (this.Inplate == "word") {
-         this.worldMap();
-         this.worldpie()
+        this.worldMap();
+        this.worldpie();
       }
     }
   },
@@ -248,7 +248,7 @@ export default {
           }
         },
         xAxis: {
-          type: "value"
+          type:'value',
         },
         yAxis: {
           type: "category",
@@ -266,6 +266,7 @@ export default {
               show: true,
               position: "insideLeft"
             },
+            left: "20px",
             data: arrVuale
           },
           {
@@ -287,7 +288,12 @@ export default {
             },
             data: arrdead
           }
-        ]
+        ],
+        grid: {
+          left: "1%",
+          right: "10%",
+          containLabel: true
+        }
       };
       this.$nextTick(() => {
         var myChart = this.$echarts.init(document.getElementById("min"));
@@ -297,36 +303,36 @@ export default {
     worldpie() {
       let arrName = [];
       let arrVuale = [];
-      for(const key in this.words.continent){
-        arrName.push(this.words.continent[key].name)
+      for (const key in this.words.continent) {
+        arrName.push(this.words.continent[key].name);
       }
       this.par = {
         tooltip: {
           trigger: "item",
-          formatter: '现存病例'+"<br/>{b} : {c} ({d}%)"
+          formatter: "现存病例" + "<br/>{b} : {c} ({d}%)"
         },
         legend: {
-            orient: 'vertical',
-            left: '-10px',
-            data: arrName
+          orient: "vertical",
+          left: "-10px",
+          data: arrName
         },
         series: [
           {
             name: "数据类型",
             type: "pie",
             radius: "55%",
-            left:'50px',
+            left: "50px",
             data: this.words.continent,
-             label: {
-              show: true,
-            },
+            label: {
+              show: true
+            }
           }
-        ],
+        ]
       };
-     this.$nextTick(()=>{
-          var myChart = this.$echarts.init(document.getElementById("par"));
-         myChart.setOption(this.par);
-      })
+      this.$nextTick(() => {
+        var myChart = this.$echarts.init(document.getElementById("par"));
+        myChart.setOption(this.par);
+      });
     }
   }
 };
@@ -360,7 +366,7 @@ export default {
     width: 100%;
   }
 }
-.row{
+.row {
   padding: 0;
   margin: 0;
 }
