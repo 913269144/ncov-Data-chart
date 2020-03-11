@@ -15,6 +15,12 @@ export default {
             name:'rumor',
             component:()=>
             import('@/components/pages/rumor/rumor.vue')
+        },
+        {
+            path:'broadcast',
+            name:'broadcast',
+            component:()=>
+            import('@/components/pages/broadcast/broadcast.vue')
         }
     ]
 }

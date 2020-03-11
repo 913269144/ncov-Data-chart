@@ -13,8 +13,6 @@ export default new Router({
       },
       component: index,
       children:[
-
-        //湖北
         region,
       ]
     }

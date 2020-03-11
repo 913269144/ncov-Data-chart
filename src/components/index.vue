@@ -46,7 +46,7 @@ export default {
         },
         {
           name: "实时播报",
-          routerName: ""
+          routerName: "broadcast"
         },
         {
           name: "疾病知识",

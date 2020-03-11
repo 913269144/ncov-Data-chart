@@ -43,3 +43,12 @@ export function getIndexRumorList(object){
         params:object
     })
 }
+
+//最新播报
+export function getNewest(object){
+    return request({
+        url:HOST+"data/getNewest/281",
+        methods:'get',
+        params:object
+    })
+}
