@@ -42,18 +42,6 @@ export default {
     assetsData,
     scroll
   },
-  //监听屏幕宽度
-  watch: {
-    Inplate: {
-      handler(newValue, oldValue) {
-        if (this.Inplate == "china") {
-          this.$refs.Plate_data.getdata(this.Inplate);
-          this.$refs.Plate_data.area(this.Inplate);
-        }
-      },
-      deep: true
-    }
-  },
   methods: {
     //模块切换
     routerin(region) {
@@ -68,7 +56,7 @@ export default {
          this.color_word = 'rgb(65, 105, 226)'
          this.color_china = '#333'
       }
-    }
+    },
   }
 };
 </script>

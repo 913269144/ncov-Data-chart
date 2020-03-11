@@ -102,7 +102,7 @@
         </div>
       </div>
     </div>
-    <maps :City="City" :ProvinceList="ProvinceList" ref="map"></maps>
+    <maps :City="City" :ProvinceList="ProvinceList" :words="words" :Inplate="Inplate" ref="map"></maps>
     <!-- 各省份/地区 -->
     <div class="Province" style="margin-bottom:60px">
       <div class="containder-fluid">
@@ -212,6 +212,10 @@ export default {
         seriousCount: "",
         deadCount: ""
       },
+      words: {
+        Topten: [],
+        continent: []
+      },
       courseSubList: [
         {
           name: "亚洲",
@@ -272,7 +276,7 @@ export default {
       dataList: [],
       proData: [],
       City: [],
-      ProvinceList:[],
+      ProvinceList: [],
       content_scroll: "",
       isleft: true,
       show: false,
@@ -287,20 +291,12 @@ export default {
     Inplate: String
   },
   created() {
-    this.getdata(this.Inplate);
-    this.area(this.Inplate);
+    this.getdata("china");
+    this.area("china");
+    this.area("word");
     window.addEventListener("scroll", this.handleScroll);
   },
   watch: {
-    Inplate: {
-      handler(newValue, oldValue) {
-        if (newValue) {
-          this.getdata(newValue);
-          this.area(newValue);
-        }
-      },
-      deep: true
-    },
     content_scroll: {
       handler(newValue, oldValue) {
         if (newValue <= 49) {
@@ -320,6 +316,7 @@ export default {
     //获取数据 (类型)
     getdata(type) {
       if (type == "china") {
+        this.dataList = [];
         getStatisticsService().then(res => {
           this.dataList = res.data;
           this.updateTime = timetrans(res.data.modifyTime, "y-y-d-time");
@@ -330,6 +327,8 @@ export default {
     //各地区详情
     area(type) {
       if (type == "china") {
+        this.City = [];
+        this.ProvinceList = [];
         getareaData().then(res => {
           //各个省份列表
           this.areaList = res.data;
@@ -338,16 +337,15 @@ export default {
             if (this.areaList[key].provinceName == "湖北省") {
               arr = this.areaList[key].cities;
             }
-            
           }
-          this.areaList.forEach(item=>{
+          this.areaList.forEach(item => {
             this.ProvinceList.push({
-              name:item.provinceShortName,
-              value:item.currentConfirmedCount,
-              curedCount:item.curedCount,
-              deadCount:item.deadCount
-            })
-          })
+              name: item.provinceShortName,
+              value: item.currentConfirmedCount,
+              curedCount: item.curedCount,
+              deadCount: item.deadCount
+            });
+          });
           arr.forEach(item => {
             this.City.push({
               name: item.cityName + "市",
@@ -356,15 +354,15 @@ export default {
               curedCount: item.curedCount
             });
           });
-          for(const i in this.City){
-           switch (this.City[i].name) {
-            case "神农架林区市":
-              this.City[i].name = "神农架林区";
-              break;
-            case "恩施州市":
-              this.City[i].name = "恩施土家族苗族自治州";
-              break;
-          }
+          for (const i in this.City) {
+            switch (this.City[i].name) {
+              case "神农架林区市":
+                this.City[i].name = "神农架林区";
+                break;
+              case "恩施州市":
+                this.City[i].name = "恩施土家族苗族自治州";
+                break;
+            }
           }
         });
       } else {
@@ -458,6 +456,25 @@ export default {
             seriousCount: arr3,
             deadCount: arr4
           };
+          let newValue = [];
+          this.courseSubList.forEach(item => {
+            newValue.push({
+              name: item.name,
+              value: item.currentConfirmedCount,
+              curedCount: item.curedCount,
+              deadCount: item.deadCount
+            });
+          });
+          res.data.forEach(item => {
+            this.words.Topten.push({
+              name: item.provinceName,
+              value: item.currentConfirmedCount,
+              deadCount: item.deadCount,
+              curedCount: item.curedCount
+            });
+          });
+          this.words.continent = newValue;
+          this.words.Topten = this.words.Topten.splice(0, 10);
         });
       }
     },
