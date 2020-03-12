@@ -13,7 +13,11 @@ export default {
     },
     data() {
         return {
+           
         }
+    },
+    watch:{
+       
     },
     methods: {
         changeTitle(e) {

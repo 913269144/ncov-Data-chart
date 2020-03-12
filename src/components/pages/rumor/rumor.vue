@@ -147,7 +147,6 @@ export default {
             this.Recomme[key].createTime
           );
         }
-        console.log(this.Recomme);
       });
     }
   }

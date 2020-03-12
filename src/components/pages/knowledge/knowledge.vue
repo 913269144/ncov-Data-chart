@@ -32,7 +32,6 @@ export default {
       getList(){
           getWikiList().then(res=>{
               this.list = res.data.result
-              console.log(res)
           })
       }
   }
