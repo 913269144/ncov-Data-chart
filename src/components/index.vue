@@ -50,7 +50,7 @@ export default {
         },
         {
           name: "疾病知识",
-          routerName: ""
+          routerName: "knowledge"
         }
       ],
       index : '',

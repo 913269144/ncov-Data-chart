@@ -52,3 +52,19 @@ export function getNewest(object){
         params:object
     })
 }
+
+export function getIndexRecommendList(object){
+    return request({
+        url:HOST+'data/getIndexRecommendList',
+        methods:"get",
+        params:object
+    })
+}
+
+export function getWikiList(object){
+    return request({
+        url:HOST+'data/getWikiList',
+        methods:'get',
+        params:object
+    })
+}

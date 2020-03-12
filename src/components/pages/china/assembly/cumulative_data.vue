@@ -42,7 +42,7 @@
               <span style="color:#f78207">+{{dataList.suspectedIncr}}</span>
             </div>
             <div class="num" style="color:#f78207">{{dataList.suspectedCount}}</div>
-            <div>现存疑似</div>
+            <div>境外输入</div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-in">
             <div class="yesterday">

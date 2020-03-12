@@ -14,6 +14,8 @@ export function timetrans(date,type){
     var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
     if(type == 'y-y-d-time'){
         return Y+M+D+h+m+s;
+    }else if(type == 'd-time'){
+        return D+h+m+s
     }else{
         return Y+M+D
     }

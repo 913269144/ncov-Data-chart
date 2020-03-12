@@ -1,8 +1,8 @@
 export default {
     path:'/region',
     name:'region',
-    component:()=>
-    import('@/components/pages/hub/index.vue'),
+     component:()=>
+     import('@/components/pages/index/index.vue'),
     children:[
         {
             path:'chinese',
@@ -21,6 +21,12 @@ export default {
             name:'broadcast',
             component:()=>
             import('@/components/pages/broadcast/broadcast.vue')
+        },
+        {
+            path:'knowledge',
+            name:'knowledge',
+            component:()=>
+            import('@/components/pages/knowledge/knowledge.vue')
         }
     ]
 }

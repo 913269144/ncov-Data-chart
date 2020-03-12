@@ -1,20 +1,14 @@
 <template>
   <div class="box">
     <div class="content-box">
-      <div class="content-title">
-        <i></i>
-        <span>实时播报</span>
-      </div>
-     <div>
-         
-     </div>
-      <div class="content-nav" v-for="(item,index) in this.newlist" :key="item.id" @click="RouterInfo(item.sourceUrl)">
+      <div class="content-nav" v-for="(item,index) in this.newlist" :key="item.id">
         <div>
           <div class="nav-icon">
             <img src="@/assets/icon/圆.png" alt />
             <i></i>
+            <span>{{item.pubDateStr}}</span>        
           </div>
-          <div class="nav-text">
+          <div class="nav-text" @click="RouterInfo(item.sourceUrl)">
             <p>
               <i v-show="index==0">最新</i>{{item.title}}
             </p>
@@ -33,6 +27,7 @@
 
 <script>
 import {getNewest} from '@/api/data'
+import {timetrans}from '@/assets/js/timesTotime'
 export default {
         data () {
             return {
@@ -66,23 +61,7 @@ i {
   font-style: normal;
 }
 .content-box {
-  .content-title {
-    background: #fff;
-    width: 100%;
-    text-align: left;
-    padding: 10px 20px;
-    font-size: 20px;
-    border: 1px solid #f7f7f7;
-    margin: 10px 0;
-    i {
-      width: 20px;
-      height: 20px;
-      border: 3px solid #4169e2;
-    }
-    span {
-      margin-left: 10px;
-    }
-  }
+  padding:20px 0;
   .content-nav {
     height: 200px;
     .nav-icon {
@@ -99,6 +78,13 @@ i {
         background: #ccc;
         top: 17px;
         left: 57px;
+      }
+      span{
+        position: absolute;
+        left: 10px;
+        top:2px;
+        font-size: 1rem;
+        color: #999;
       }
     }
     .nav-text {
