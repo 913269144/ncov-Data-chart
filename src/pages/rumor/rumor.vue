@@ -93,6 +93,7 @@
         </div>
       </div>
     </div>
+    <loading v-if="loading"></loading>
   </div>
 </template>
 
@@ -105,7 +106,8 @@ export default {
   data() {
     return {
       list: [],
-      Recomme: []
+      Recomme: [],
+      loading: false
     };
   },
   created() {
@@ -124,30 +126,42 @@ export default {
   },
   methods: {
     getlist() {
-      getIndexRumorList().then(res => {
-        this.list = res.data;
-      });
+      this.loading = true;
+      getIndexRumorList()
+        .then(res => {
+          this.list = res.data;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.loading = false;
+        });
     },
     getrem() {
-      getIndexRecommendList().then(res => {
-        this.Recomme = res.data;
-        for (const key in this.Recomme) {
-          switch (this.Recomme[key].contentType) {
-            case 1 || "1":
-              this.Recomme[key].contentType = "我要出行";
-              break;
-            case 2 || "2":
-              this.Recomme[key].contentType = "家有小孩";
-              break;
-            default:
-              this.Recomme[key].contentType = "我宅在家";
-              break;
+      this.loading = true;
+      getIndexRecommendList()
+        .then(res => {
+          this.Recomme = res.data;
+          for (const key in this.Recomme) {
+            switch (this.Recomme[key].contentType) {
+              case 1 || "1":
+                this.Recomme[key].contentType = "我要出行";
+                break;
+              case 2 || "2":
+                this.Recomme[key].contentType = "家有小孩";
+                break;
+              default:
+                this.Recomme[key].contentType = "我宅在家";
+                break;
+            }
+            this.Recomme[key].createTime = timetrans(
+              this.Recomme[key].createTime
+            );
           }
-          this.Recomme[key].createTime = timetrans(
-            this.Recomme[key].createTime
-          );
-        }
-      });
+          this.loading = false;
+        })
+        .catch(err => {
+          this.loading = false;
+        });
     }
   }
 };

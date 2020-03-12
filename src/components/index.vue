@@ -75,7 +75,7 @@
   </div>
 </template>
 <script>
-import wechat from "@/components/pages/china/assembly/dialog/weChat";
+import wechat from "@/pages/china/assembly/dialog/weChat";
 export default {
   data() {
     return {

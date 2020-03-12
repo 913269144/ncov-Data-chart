@@ -2,31 +2,31 @@ export default {
     path:'/region',
     name:'region',
      component:()=>
-     import('@/components/pages/index/index.vue'),
+     import('@/pages/index/index.vue'),
     children:[
         {
             path:'chinese',
             name:'chinese',
             component:()=>
-            import('@/components/pages/china/china.vue'),
+            import('@/pages/china/china.vue'),
         },
         {
             path:'rumor',
             name:'rumor',
             component:()=>
-            import('@/components/pages/rumor/rumor.vue')
+            import('@/pages/rumor/rumor.vue')
         },
         {
             path:'broadcast',
             name:'broadcast',
             component:()=>
-            import('@/components/pages/broadcast/broadcast.vue')
+            import('@/pages/broadcast/broadcast.vue')
         },
         {
             path:'knowledge',
             name:'knowledge',
             component:()=>
-            import('@/components/pages/knowledge/knowledge.vue')
+            import('@/pages/knowledge/knowledge.vue')
         }
     ]
 }

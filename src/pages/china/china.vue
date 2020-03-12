@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import assetsData from "@/components/pages/china/assembly/cumulative_data";
-import scroll from '@/components/pages/china/assembly/scroll_slide'
+import assetsData from "@/pages/china/assembly/cumulative_data";
+import scroll from '@/pages/china/assembly/scroll_slide'
 import { getStatisticsService, getareaData } from "@/api/data";
 export default {
   data() {

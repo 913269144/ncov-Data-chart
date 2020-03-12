@@ -8,6 +8,8 @@ import layer from 'vue-layer'
 import 'vue-layer/lib/vue-layer.css';
 import './assets/css/bootstrap.css'  
 import './assets/js/bootstrap.js' 
+import loading from './components/loading/loading'
+Vue.use(loading)
 Vue.config.productionTip = false
 Vue.prototype.$layer = layer(Vue);
 Vue.prototype.$echarts = echarts

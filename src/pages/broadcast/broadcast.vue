@@ -6,11 +6,12 @@
           <div class="nav-icon">
             <img src="@/assets/icon/圆.png" alt />
             <i></i>
-            <span>{{item.pubDateStr}}</span>        
+            <span>{{item.pubDateStr}}</span>
           </div>
           <div class="nav-text" @click="RouterInfo(item.sourceUrl)">
             <p>
-              <i v-show="index==0">最新</i>{{item.title}}
+              <i v-show="index==0">最新</i>
+              {{item.title}}
             </p>
             <div class="text-body">
               <p>{{item.summary}}</p>
@@ -22,31 +23,39 @@
         </div>
       </div>
     </div>
+    <loading v-if="loading"></loading>
   </div>
 </template>
 
 <script>
-import {getNewest} from '@/api/data'
-import {timetrans}from '@/assets/js/timesTotime'
+import { getNewest } from "@/api/data";
+import { timetrans } from "@/assets/js/timesTotime";
 export default {
-        data () {
-            return {
-                newlist:[]
-            }
-        },
-        created(){
-            this.getData()
-        },
-        methods:{
-            getData(){
-                getNewest().then(res=>{
-                    this.newlist = res.data
-                })
-            },
-            RouterInfo(url){
-                window.open(url)
-            }
-        }
+  data() {
+    return {
+      newlist: [],
+      loading: false
+    };
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      this.loading = true;
+      getNewest()
+        .then(res => {
+          this.newlist = res.data;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.loading = false;
+        });
+    },
+    RouterInfo(url) {
+      window.open(url);
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -61,7 +70,7 @@ i {
   font-style: normal;
 }
 .content-box {
-  padding:20px 0;
+  padding: 20px 0;
   .content-nav {
     height: 200px;
     .nav-icon {
@@ -79,10 +88,10 @@ i {
         top: 17px;
         left: 57px;
       }
-      span{
+      span {
         position: absolute;
         left: 10px;
-        top:2px;
+        top: 2px;
         font-size: 1rem;
         color: #999;
       }

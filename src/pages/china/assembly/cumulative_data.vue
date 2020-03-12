@@ -172,14 +172,15 @@
       </div>
     </div>
     <province :show="show" :proData="proData" :types="types" @changes="outIn"></province>
+    <loading v-if="loading"></loading>
   </div>
 </template>
 
 <script>
-import province from "@/components/pages/china/assembly/dialog/province";
+import province from "@/pages/china/assembly/dialog/province";
 import { timetrans } from "@/assets/js/timesTotime";
 import { getStatisticsService, getareaData, getOverseas } from "@/api/data";
-import maps from "@/components/pages/china/assembly/map";
+import maps from "@/pages/china/assembly/map";
 export default {
   data() {
     return {
@@ -280,6 +281,7 @@ export default {
       content_scroll: "",
       isleft: true,
       show: false,
+      loading: false,
       types: "City"
     };
   },
@@ -315,167 +317,186 @@ export default {
   methods: {
     //获取数据 (类型)
     getdata(type) {
+      this.loading = true;
       if (type == "china") {
         this.dataList = [];
-        getStatisticsService().then(res => {
-          this.dataList = res.data;
-          this.updateTime = timetrans(res.data.modifyTime, "y-y-d-time");
-        });
-      } else {
+        getStatisticsService()
+          .then(res => {
+            this.dataList = res.data;
+            this.updateTime = timetrans(res.data.modifyTime, "y-y-d-time");
+            this.loading = false;
+          })
+          .catch(err => {
+            this.loading = false;
+          });
       }
     },
     //各地区详情
     area(type) {
+      this.loading = true;
       if (type == "china") {
         this.City = [];
         this.ProvinceList = [];
-        getareaData().then(res => {
-          //各个省份列表
-          this.areaList = res.data;
-          let arr = [];
-          for (const key in this.areaList) {
-            if (this.areaList[key].provinceName == "湖北省") {
-              arr = this.areaList[key].cities;
-            }
-          }
-          this.areaList.forEach(item => {
-            this.ProvinceList.push({
-              name: item.provinceShortName,
-              value: item.currentConfirmedCount,
-              curedCount: item.curedCount,
-              deadCount: item.deadCount
-            });
-          });
-          arr.forEach(item => {
-            this.City.push({
-              name: item.cityName + "市",
-              value: item.currentConfirmedCount,
-              deadCount: item.deadCount,
-              curedCount: item.curedCount
-            });
-          });
-          for (const i in this.City) {
-            switch (this.City[i].name) {
-              case "神农架林区市":
-                this.City[i].name = "神农架林区";
-                break;
-              case "恩施州市":
-                this.City[i].name = "恩施土家族苗族自治州";
-                break;
-            }
-          }
-        });
-      } else {
-        //海外各国详情
-        getOverseas().then(res => {
-          var arr, arr2, arr3, arr4;
-          arr = arr2 = arr3 = arr4 = 0;
-          this.courseSubList = [
-            {
-              name: "亚洲",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            },
-            {
-              name: "欧洲",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            },
-            {
-              name: "北美洲",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            },
-            {
-              name: "南美洲",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            },
-            {
-              name: "非洲",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            },
-            {
-              name: "其他",
-              index: 0,
-              currentConfirmedCount: 0,
-              confirmedCount: 0,
-              curedCount: 0,
-              deadCount: 0,
-              city: []
-            }
-          ];
-          for (const key in res.data) {
-            arr = arr + Number(res.data[key].currentConfirmedCount);
-            arr2 = arr2 + Number(res.data[key].confirmedCount);
-            arr3 = arr3 + Number(res.data[key].curedCount);
-            arr4 = arr4 + Number(res.data[key].deadCount);
-            for (const index in this.courseSubList) {
-              if (this.courseSubList[index].name == res.data[key].continents) {
-                this.courseSubList[index].index =
-                  this.courseSubList[index].index + 1;
-                this.courseSubList[index].city.push(res.data[key]);
-                this.courseSubList[index].currentConfirmedCount =
-                  this.courseSubList[index].currentConfirmedCount +
-                  res.data[key].currentConfirmedCount;
-                this.courseSubList[index].confirmedCount =
-                  this.courseSubList[index].confirmedCount +
-                  res.data[key].confirmedCount;
-                this.courseSubList[index].curedCount =
-                  this.courseSubList[index].curedCount +
-                  res.data[key].curedCount;
-                this.courseSubList[index].deadCount =
-                  this.courseSubList[index].deadCount + res.data[key].deadCount;
+        getareaData()
+          .then(res => {
+            //各个省份列表
+            this.areaList = res.data;
+            let arr = [];
+            for (const key in this.areaList) {
+              if (this.areaList[key].provinceName == "湖北省") {
+                arr = this.areaList[key].cities;
               }
             }
-          }
-          this.wordList = {
-            currentConfirmedCount: arr,
-            suspectedCount: arr2,
-            seriousCount: arr3,
-            deadCount: arr4
-          };
-          let newValue = [];
-          this.courseSubList.forEach(item => {
-            newValue.push({
-              name: item.name,
-              value: item.currentConfirmedCount,
-              curedCount: item.curedCount,
-              deadCount: item.deadCount
+            this.areaList.forEach(item => {
+              this.ProvinceList.push({
+                name: item.provinceShortName,
+                value: item.currentConfirmedCount,
+                curedCount: item.curedCount,
+                deadCount: item.deadCount
+              });
             });
-          });
-          res.data.forEach(item => {
-            this.words.Topten.push({
-              name: item.provinceName,
-              value: item.currentConfirmedCount,
-              deadCount: item.deadCount,
-              curedCount: item.curedCount
+            arr.forEach(item => {
+              this.City.push({
+                name: item.cityName + "市",
+                value: item.currentConfirmedCount,
+                deadCount: item.deadCount,
+                curedCount: item.curedCount
+              });
             });
+            for (const i in this.City) {
+              switch (this.City[i].name) {
+                case "神农架林区市":
+                  this.City[i].name = "神农架林区";
+                  break;
+                case "恩施州市":
+                  this.City[i].name = "恩施土家族苗族自治州";
+                  break;
+              }
+            }
+            this.loading = false;
+          })
+          .catch(err => {
+            this.loading = false;
           });
-          this.words.continent = newValue;
-          this.words.Topten = this.words.Topten.splice(0, 10);
-        });
+      } else {
+        //海外各国详情
+        getOverseas()
+          .then(res => {
+            var arr, arr2, arr3, arr4;
+            arr = arr2 = arr3 = arr4 = 0;
+            this.courseSubList = [
+              {
+                name: "亚洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                name: "欧洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                name: "北美洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                name: "南美洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                name: "非洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                name: "其他",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              }
+            ];
+            for (const key in res.data) {
+              arr = arr + Number(res.data[key].currentConfirmedCount);
+              arr2 = arr2 + Number(res.data[key].confirmedCount);
+              arr3 = arr3 + Number(res.data[key].curedCount);
+              arr4 = arr4 + Number(res.data[key].deadCount);
+              for (const index in this.courseSubList) {
+                if (
+                  this.courseSubList[index].name == res.data[key].continents
+                ) {
+                  this.courseSubList[index].index =
+                    this.courseSubList[index].index + 1;
+                  this.courseSubList[index].city.push(res.data[key]);
+                  this.courseSubList[index].currentConfirmedCount =
+                    this.courseSubList[index].currentConfirmedCount +
+                    res.data[key].currentConfirmedCount;
+                  this.courseSubList[index].confirmedCount =
+                    this.courseSubList[index].confirmedCount +
+                    res.data[key].confirmedCount;
+                  this.courseSubList[index].curedCount =
+                    this.courseSubList[index].curedCount +
+                    res.data[key].curedCount;
+                  this.courseSubList[index].deadCount =
+                    this.courseSubList[index].deadCount +
+                    res.data[key].deadCount;
+                }
+              }
+            }
+            this.wordList = {
+              currentConfirmedCount: arr,
+              suspectedCount: arr2,
+              seriousCount: arr3,
+              deadCount: arr4
+            };
+            let newValue = [];
+            this.courseSubList.forEach(item => {
+              newValue.push({
+                name: item.name,
+                value: item.currentConfirmedCount,
+                curedCount: item.curedCount,
+                deadCount: item.deadCount
+              });
+            });
+            res.data.forEach(item => {
+              this.words.Topten.push({
+                name: item.provinceName,
+                value: item.currentConfirmedCount,
+                deadCount: item.deadCount,
+                curedCount: item.curedCount
+              });
+            });
+            this.words.continent = newValue;
+            this.words.Topten = this.words.Topten.splice(0, 10);
+            this.loading = false;
+          })
+          .catch(err => {
+            this.loading = false;
+          });
       }
     },
     //查看各个省份详情
