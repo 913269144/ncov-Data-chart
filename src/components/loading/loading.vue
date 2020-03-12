@@ -52,7 +52,7 @@ section {
     width: 8px;
     height: 100%;
     border-radius: 4px;
-    background: lightgreen;
+    background: #ccc;
     -webkit-animation: load 1s ease infinite;
     animation:load 1s ease infinite;
     margin-left: 5px;
@@ -60,23 +60,23 @@ section {
 @-webkit-keyframes load{
     0%,100%{
         height: 40px;
-        background: lightgreen;
+        background: #fff;
     }
     50%{
         height: 70px;
         margin: -15px 0;
-        background: lightblue;
+        background: #ccc;
     }
 }
 @keyframes load{
     0%,100%{
         height: 40px;
-        background: lightgreen;
+        background:#fff;
     }
     50%{
         height: 70px;
         margin: -15px 0;
-        background: lightblue;
+        background: #ccc;
     }
 }
 .loading span:nth-child(2){
