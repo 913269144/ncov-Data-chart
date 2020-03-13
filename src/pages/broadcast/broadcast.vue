@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" >
     <div class="content-box">
       <div class="content-nav" v-for="(item,index) in this.newlist" :key="item.id">
         <div>
@@ -60,6 +60,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box {
+  position: relative;
   background-color: #f7f7f7;
 }
 .row {
@@ -70,6 +71,7 @@ i {
   font-style: normal;
 }
 .content-box {
+  position: sticky;
   padding: 20px 0;
   .content-nav {
     height: 200px;

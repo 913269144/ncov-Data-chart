@@ -1,5 +1,5 @@
 <template>
-  <div style="margin:0 10px;overflow-y: hidden">
+  <div class="china-box" style="margin:0 10px;overflow-y: hidden">
     <!--  播报新闻 -->
     <scroll></scroll>
     <!-- 中国 or 世界 -->

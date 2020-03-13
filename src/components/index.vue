@@ -124,8 +124,8 @@ export default {
           this.$refs.title.style.left = 0;
           this.$refs.bottom[this.index].style.backgroundColor = "#fff";
         } else {
-          (this.$refs.title.style.position = ""),
-            (this.$refs.title.style.backgroundColor = "#fff");
+          this.$refs.title.style.position = "relative";
+          this.$refs.title.style.backgroundColor = "#fff";
           this.$refs.title.style.color = "";
           this.$refs.title.style.top = "";
           this.$refs.title.style.left = "";
@@ -152,11 +152,13 @@ export default {
       this.routerName = this.$route.name;
     },
     handleScroll() {
-      this.scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      this.orrcTop = this.$refs.banner.offsetHeight;
+      this.$nextTick(() => {
+        this.scrollTop =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+        this.orrcTop = this.$refs.banner.offsetHeight;
+      });
     },
     too() {
       for (let i = 0; i < this.menu.length; i++) {
@@ -176,17 +178,19 @@ export default {
       this.show = !this.show;
     },
     getPath() {
-        for(const key in this.menu){
-          if(this.$route.name == this.menu[key].routerName){
-            return this.routerIn(key,this.$route.name)
-          }
+      for (const key in this.menu) {
+        if (this.$route.name == this.menu[key].routerName) {
+          return this.routerIn(key, this.$route.name);
         }
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+
+
 img {
   width: 100%;
   display: inline-block;
@@ -208,6 +212,7 @@ img {
   z-index: 999;
   padding: 0 10px;
   position: relative;
+  -webkit-overflow-scrolling: touch;
   div {
     height: 50px;
     line-height: 50px;

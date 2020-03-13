@@ -1,21 +1,21 @@
 <template>
-  <div class="box">
-    <div class="content" v-for="(item,index) in this.list" :key="item.id">
-      <div class="image-box" v-if="item.linkUrl">
-        <img :src="item.imgUrl" alt />
-      </div>
-      <div v-if="index==0">
-        <span>{{item.title}}</span>
-        <p>{{item.description}}</p>
-      </div>
-      <div class="txt" v-else>
-        <span>{{item.title}}</span>
-        <p>{{item.description}}</p>
-      </div>
-      <i @click="routerIn(item.linkUrl)">查看详情</i>
+<div class="box">
+  <div class="content" v-for="(item,index) in this.list" :key="item.id">
+    <div class="image-box" v-if="item.linkUrl">
+      <img :src="item.imgUrl" alt />
     </div>
-    <loading v-if="loading"></loading>
+    <div v-if="index==0">
+      <span>{{item.title}}</span>
+      <p>{{item.description}}</p>
+    </div>
+    <div class="txt" v-else>
+      <span>{{item.title}}</span>
+      <p>{{item.description}}</p>
+    </div>
+    <i @click="routerIn(item.linkUrl)">查看详情</i>
   </div>
+  <loading v-if="loading"></loading>
+</div>
 </template>
 
 <script>
