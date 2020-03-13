@@ -176,7 +176,7 @@ export default {
                 // 覆盖物设置
                 show: true,
                 color: "#000",
-                fontSize: ".6rem"
+                fontSize: ".1rem"
               }
             }
           ],
@@ -186,7 +186,7 @@ export default {
             //提示框组件。
             formatter: function(params) {
               return (
-                "城市: " +
+                "省份: " +
                 params.name +
                 "<br/>现存确诊: " +
                 params.value +
@@ -357,7 +357,7 @@ export default {
   background-color: #f7f7f7;
   .slide-box {
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 350px;
   }
 }
 .type-value {

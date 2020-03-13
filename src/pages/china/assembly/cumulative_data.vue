@@ -102,8 +102,8 @@
         </div>
       </div>
     </div>
-    <maps :City="City" :ProvinceList="ProvinceList" :words="words" :Inplate="Inplate" ref="map"></maps>
-    <!-- 各省份/地区 -->
+        <maps :City="City" :ProvinceList="ProvinceList" :words="words" :Inplate="Inplate" ref="map"></maps>
+     <!-- 各省份/地区 -->
     <div class="Province" style="margin-bottom:60px">
       <div class="containder-fluid">
         <div class="region-title" style="height:30px;line-height:30px" ref="region">
@@ -162,8 +162,8 @@
                     class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name"
                   >{{i.currentConfirmedCount}}</div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 city-name">{{i.confirmedCount}}</div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.curedCount}}</div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.deadCount}}</div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 city-name">{{i.curedCount}}</div>
                 </div>
               </div>
             </div>
@@ -271,6 +271,16 @@ export default {
           curedCount: 0,
           deadCount: 0,
           city: []
+        },
+        {
+          name:"大洋洲",
+          index: 0,
+          currentConfirmedCount: 0,
+          confirmedCount: 0,
+          curedCount: 0,
+          deadCount: 0,
+          city: []
+
         }
       ],
       areaList: [],
@@ -431,6 +441,24 @@ export default {
                 city: []
               },
               {
+                name: "大洋洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
+                 name: "南极洲",
+                index: 0,
+                currentConfirmedCount: 0,
+                confirmedCount: 0,
+                curedCount: 0,
+                deadCount: 0,
+                city: []
+              },
+              {
                 name: "其他",
                 index: 0,
                 currentConfirmedCount: 0,
@@ -441,7 +469,7 @@ export default {
               }
             ];
             for (const key in res.data) {
-              arr = arr + Number(res.data[key].currentConfirmedCount);
+              arr  =  arr + Number(res.data[key].currentConfirmedCount);
               arr2 = arr2 + Number(res.data[key].confirmedCount);
               arr3 = arr3 + Number(res.data[key].curedCount);
               arr4 = arr4 + Number(res.data[key].deadCount);
@@ -474,7 +502,8 @@ export default {
               deadCount: arr4
             };
             let newValue = [];
-            this.courseSubList.forEach(item => {
+
+    this.courseSubList.forEach(item => {
               newValue.push({
                 name: item.name,
                 value: item.currentConfirmedCount,
