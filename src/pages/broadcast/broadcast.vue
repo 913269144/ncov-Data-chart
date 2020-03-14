@@ -62,6 +62,8 @@ export default {
 .box {
   position: relative;
   background-color: #f7f7f7;
+  padding-bottom: 55px;
+  overflow: hidden;
 }
 .row {
   padding: 0;

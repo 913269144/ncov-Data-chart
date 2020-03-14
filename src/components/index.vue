@@ -109,8 +109,10 @@ export default {
     wechat
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-    this.too();
+    this.$nextTick(()=>{
+      window.addEventListener("scroll", this.handleScroll);
+      this.too();
+    })
   },
   watch: {
     //监听顶部位置

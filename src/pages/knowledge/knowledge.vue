@@ -97,7 +97,7 @@ i {
       position: absolute;
       left: 150px;
       top: 10px;
-      width: 200px;
+      padding-left: 5px;
     }
   }
 }
