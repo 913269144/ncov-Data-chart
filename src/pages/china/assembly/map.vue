@@ -143,6 +143,7 @@ export default {
               type: "piecewise",
               pieces: [
                 { min: 10000 },
+                { min:1000,max:9999},
                 { min: 599, max: 999 },
                 { min: 100, max: 499 },
                 { min: 10, max: 99 },
@@ -202,6 +203,7 @@ export default {
               type: "piecewise",
               pieces: [
                 { min: 10000 },
+                { min:1000,max:9999},
                 { min: 599, max: 999 },
                 { min: 100, max: 499 },
                 { min: 10, max: 99 },
