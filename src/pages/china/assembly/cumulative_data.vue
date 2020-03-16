@@ -88,7 +88,7 @@
             <div>现存确诊</div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
-            <div class="num" style="color:#f78207">{{wordList.suspectedCount}}</div>
+            <div class="num" style="color:#f78207">{{wordList.confirmedCount}}</div>
             <div>累计确诊</div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
@@ -96,7 +96,7 @@
             <div>累计死亡</div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-in">
-            <div class="num" style="color:rgb(162, 90, 78)">{{wordList.seriousCount}}</div>
+            <div class="num" style="color:rgb(162, 90, 78)">{{wordList.curedCount}}</div>
             <div>累计治愈</div>
           </div>
         </div>
@@ -207,12 +207,6 @@ export default {
         }
       ],
       regionType: [""],
-      wordList: {
-        currentConfirmedCount: "",
-        suspectedCount: "",
-        seriousCount: "",
-        deadCount: ""
-      },
       words: {
         Topten: [],
         continent: []
@@ -292,7 +286,8 @@ export default {
       isleft: true,
       show: false,
       loading: false,
-      types: "City"
+      types: "City",
+      wordList:{}
     };
   },
   components: {
@@ -330,10 +325,11 @@ export default {
       this.loading = true;
       if (type == "china") {
         this.dataList = [];
-        getStatisticsService()
-          .then(res => {
+        getStatisticsService().then(res => {
             this.dataList = res.data;
             this.updateTime = timetrans(res.data.modifyTime, "y-y-d-time");
+            let arr = res.data.foreignStatistics
+            this.wordList = arr
             this.loading = false;
           })
           .catch(err => {
@@ -392,8 +388,6 @@ export default {
         //海外各国详情
         getOverseas()
           .then(res => {
-            var arr, arr2, arr3, arr4;
-            arr = arr2 = arr3 = arr4 = 0;
             this.courseSubList = [
               {
                 name: "亚洲",
@@ -469,10 +463,6 @@ export default {
               }
             ];
             for (const key in res.data) {
-              arr  =  arr + Number(res.data[key].currentConfirmedCount);
-              arr2 = arr2 + Number(res.data[key].confirmedCount);
-              arr3 = arr3 + Number(res.data[key].curedCount);
-              arr4 = arr4 + Number(res.data[key].deadCount);
               for (const index in this.courseSubList) {
                 if (
                   this.courseSubList[index].name == res.data[key].continents
@@ -495,15 +485,9 @@ export default {
                 }
               }
             }
-            this.wordList = {
-              currentConfirmedCount: arr,
-              suspectedCount: arr2,
-              seriousCount: arr3,
-              deadCount: arr4
-            };
             let newValue = [];
 
-    this.courseSubList.forEach(item => {
+          this.courseSubList.forEach(item => {
               newValue.push({
                 name: item.name,
                 value: item.currentConfirmedCount,
