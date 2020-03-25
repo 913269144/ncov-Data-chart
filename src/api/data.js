@@ -21,7 +21,7 @@ export function getareaData(object){
 //海外地区数据
 export function getOverseas(object){
     return request({
-        url:HOST+'data/getListByCountryTypeService2',
+        url:HOST+'data/getListByCountryTypeService2true',
         methods:'get',
         params:object
     })
