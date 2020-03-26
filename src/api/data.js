@@ -47,7 +47,7 @@ export function getIndexRumorList(object){
 //最新播报
 export function getNewest(object){
     return request({
-        url:HOST+"data/getNewest/281",
+        url:"http://49.232.173.220:3001/data/getNewest/281",
         methods:'get',
         params:object
     })
