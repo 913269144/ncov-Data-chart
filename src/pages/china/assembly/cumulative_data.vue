@@ -308,12 +308,15 @@ export default {
       handler(newValue, oldValue) {
         if (newValue <= 49) {
           (this.$refs.region.style.position = "fixed"),
-            (this.$refs.region.style.top = "50px");
-          this.$refs.region.style.width = "95%";
+          (this.$refs.region.style.top = "50px");
+          this.$refs.region.style.width = "100%";
+          this.$refs.region.style.right = "10px";
+          this.$refs.region.style.left = "0px";
         } else {
           (this.$refs.region.style.position = ""),
             (this.$refs.region.style.top = "");
           this.$refs.region.style.width = "100%";
+          this.$refs.region.style.right = "";
         }
       },
       deep: true

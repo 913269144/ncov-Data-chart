@@ -55,7 +55,7 @@ export function getNewest(object){
 
 export function getIndexRecommendList(object){
     return request({
-        url:HOST+'data/getIndexRecommendList',
+        url:'http://49.232.173.220:3001/data/getIndexRecommendList',
         methods:"get",
         params:object
     })
