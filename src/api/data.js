@@ -5,7 +5,7 @@ let HOST = 'http://193.112.137.60:3001/'
 export function getStatisticsService(object){
     return request({
         url:HOST+'data/getStatisticsService',
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -14,7 +14,7 @@ export function getStatisticsService(object){
 export function getareaData(object){
     return request({
         url:HOST+'data/getAreaStat',
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -22,7 +22,7 @@ export function getareaData(object){
 export function getOverseas(object){
     return request({
         url:HOST+'data/getListByCountryTypeService2true',
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -30,7 +30,7 @@ export function getOverseas(object){
 export function getAreaStat (object,type){
     return request({
         url:HOST+'data/getAreaStat/'+type,
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -39,7 +39,7 @@ export function getAreaStat (object,type){
 export function getIndexRumorList(object){
     return request({
         url:HOST+'data/getIndexRumorList',
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -48,7 +48,7 @@ export function getIndexRumorList(object){
 export function getNewest(object){
     return request({
         url:"http://49.232.173.220:3001/data/getNewest/281",
-        methods:'get',
+        method:'get',
         params:object
     })
 }
@@ -56,7 +56,7 @@ export function getNewest(object){
 export function getIndexRecommendList(object){
     return request({
         url:'http://49.232.173.220:3001/data/getIndexRecommendList',
-        methods:"get",
+        method:"get",
         params:object
     })
 }
@@ -64,7 +64,7 @@ export function getIndexRecommendList(object){
 export function getWikiList(object){
     return request({
         url:HOST+'data/getWikiList',
-        methods:'get',
+        method:'get',
         params:object
     })
 }
