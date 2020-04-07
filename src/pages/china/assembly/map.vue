@@ -144,7 +144,7 @@ export default {
               pieces: [
                 { min: 10000 },
                 { min:1000,max:9999},
-                { min: 599, max: 999 },
+                { min: 500, max: 999 },
                 { min: 100, max: 499 },
                 { min: 10, max: 99 },
                 { min: 1, max: 9 }
@@ -204,7 +204,7 @@ export default {
               pieces: [
                 { min: 10000 },
                 { min:1000,max:9999},
-                { min: 599, max: 999 },
+                { min: 500, max: 999 },
                 { min: 100, max: 499 },
                 { min: 10, max: 99 },
                 { min: 1, max: 9 }
