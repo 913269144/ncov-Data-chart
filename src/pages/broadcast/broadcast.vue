@@ -45,7 +45,7 @@ export default {
       this.loading = true;
       getNewest()
         .then(res => {
-          this.newlist = res.data;
+          this.newlist = res.data.slice(0,10);
           this.loading = false;
         })
         .catch(err => {

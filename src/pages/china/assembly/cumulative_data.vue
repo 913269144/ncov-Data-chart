@@ -102,8 +102,8 @@
         </div>
       </div>
     </div>
-        <maps :City="City" :ProvinceList="ProvinceList" :words="words" :Inplate="Inplate" ref="map"></maps>
-     <!-- 各省份/地区 -->
+    <maps :City="City" :ProvinceList="ProvinceList" :words="words" :Inplate="Inplate" ref="map"></maps>
+    <!-- 各省份/地区 -->
     <div class="Province" style="margin-bottom:60px">
       <div class="containder-fluid">
         <div class="region-title" style="height:30px;line-height:30px" ref="region">
@@ -267,14 +267,13 @@ export default {
           city: []
         },
         {
-          name:"大洋洲",
+          name: "大洋洲",
           index: 0,
           currentConfirmedCount: 0,
           confirmedCount: 0,
           curedCount: 0,
           deadCount: 0,
           city: []
-
         }
       ],
       areaList: [],
@@ -287,7 +286,7 @@ export default {
       show: false,
       loading: false,
       types: "City",
-      wordList:{}
+      wordList: {}
     };
   },
   components: {
@@ -308,7 +307,7 @@ export default {
       handler(newValue, oldValue) {
         if (newValue <= 49) {
           (this.$refs.region.style.position = "fixed"),
-          (this.$refs.region.style.top = "50px");
+            (this.$refs.region.style.top = "50px");
           this.$refs.region.style.width = "100%";
           this.$refs.region.style.right = "10px";
           this.$refs.region.style.left = "0px";
@@ -328,11 +327,12 @@ export default {
       this.loading = true;
       if (type == "china") {
         this.dataList = [];
-        getStatisticsService().then(res => {
+        getStatisticsService()
+          .then(res => {
             this.dataList = res.data;
             this.updateTime = timetrans(res.data.modifyTime, "y-y-d-time");
-            let arr = res.data.foreignStatistics
-            this.wordList = arr
+            let arr = res.data.foreignStatistics;
+            this.wordList = arr;
             this.loading = false;
           })
           .catch(err => {
@@ -447,7 +447,7 @@ export default {
                 city: []
               },
               {
-                 name: "南极洲",
+                name: "南极洲",
                 index: 0,
                 currentConfirmedCount: 0,
                 confirmedCount: 0,
@@ -490,7 +490,7 @@ export default {
             }
             let newValue = [];
 
-          this.courseSubList.forEach(item => {
+            this.courseSubList.forEach(item => {
               newValue.push({
                 name: item.name,
                 value: item.currentConfirmedCount,

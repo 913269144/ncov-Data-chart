@@ -265,7 +265,7 @@ export default {
             type: "bar",
             stack: "总量",
             label: {
-              show: true,
+              show: false,
               position: "insideLeft"
             },
             left: "20px",
